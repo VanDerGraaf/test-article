@@ -30,6 +30,11 @@ services:
       - MYSQL_USER=yii2advanced
       - MYSQL_PASSWORD=secret
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8801:8080
   #pgsql:
   #  image: postgres:9.5
   #  environment:
