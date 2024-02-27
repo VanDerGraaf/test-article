@@ -11,24 +11,7 @@ use yii\helpers\ArrayHelper;
 class ArticleController extends BaseController
 {
 	const ACTION_INDEX              = 'index';
-	const ACTION_FIND_BY_TITLE      = 'find-by-id';
-
-	/**
-	 * Массив поведения контроллера
-	 *
-	 * @return array|array[]
-	 */
-//	public function behaviors(): array
-//	{
-//		return ArrayHelper::merge(parent::behaviors(), [
-//			'verbs' => [
-//				'class' => VerbFilter::class,
-//				'actions' => [
-//
-//				]
-//			]
-//		]);
-//	}
+	const ACTION_FIND_BY_ID      = 'find-by-id';
 
 	/**
 	 * Поиск статей с поддержкой GET параметров

@@ -133,7 +133,7 @@ class ArticleSearch extends Model
 				$response->code = Response::CODE_OK;
 				$response->result = (new CreateArticleModelService())->createArticle($article);
 			} else {
-				$response->code = Response::CODE_NOT_FOUND;
+				$response =$this->notFoundResponse();
 			}
 		}
 
