@@ -22,6 +22,7 @@ use yii\db\ActiveRecord;
  * @property int $parent_id
  *
  * @property Categories $parent
+ * @property Categories $children
  *
  * @author Maxim Podberezhskiy
  */
@@ -33,7 +34,8 @@ class Categories extends ActiveRecord
 	const ATTR_DESCRIPTION  = 'description';
 	const ATTR_PARENT_ID    = 'parent_id';
 
-	const RELATION_PARENT = 'parent';
+	const RELATION_PARENT   = 'parent';
+	const RELATION_CHILDREN = 'children';
 
 	/**
 	 * Наименование таблицы
@@ -104,5 +106,14 @@ class Categories extends ActiveRecord
 	public function getParent(): ActiveQuery
 	{
 		return $this->hasOne(Categories::Class, [Categories::ATTR_ID => Categories::ATTR_PARENT_ID]);
+	}
+
+	/**
+	 * @return ActiveQuery
+	 * @author Maxim Podberezhskiy
+	 */
+	public function getChildren(): ActiveQuery
+	{
+		return $this->hasMany(Categories::Class, [Categories::ATTR_PARENT_ID => Categories::ATTR_ID]);
 	}
 }
