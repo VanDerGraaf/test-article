@@ -24,7 +24,7 @@ use yii\db\ActiveRecord;
  */
 class CategoriesToArticle extends ActiveRecord
 {
-	const TABLE_NAME = 'categories_to_article';
+	const TABLE_NAME = 'category_to_article';
 
 	const ATTR_ID           = 'id';
 	const ATTR_CATEGORY_ID  = 'category_id';

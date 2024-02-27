@@ -1,4 +1,9 @@
 <?php
+
+use yii\web\JsonParser;
+use yii\web\JsonResponseFormatter;
+use yii\web\Response;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -12,9 +17,20 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'request' => [
-            'csrfParam' => '_csrf-frontend',
-        ],
+	    'request' => [
+		    'csrfParam' => '_csrf-api',
+		    'parsers' => [
+			    'application/json' => JsonParser::class,
+		    ],
+	    ],
+	    'response' => [
+		    'formatters' => [
+			    Response::FORMAT_JSON => [
+				    'class' => JsonResponseFormatter::class,
+				    'prettyPrint' => YII_DEBUG, // use "pretty" output in debug mode
+			    ],
+		    ],
+	    ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -34,16 +50,16 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+	        'errorAction' => 'base/error',
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+	    'urlManager' => [
+		    'enablePrettyUrl'     => true,
+		    'showScriptName'      => false,
+		    'enableStrictParsing' => true,
+		    'rules' => array_merge(
+			    require __DIR__ . '/routes.php'
+		    )
+	    ],
     ],
     'params' => $params,
 ];
