@@ -11,9 +11,9 @@
             'charset' => 'utf8',
         ],
 ```
-5. docker-compose exec app composer install
+5. docker-compose exec frontend composer install
 6. Базу данных можно создать через админер(localhost:8801, указать сервер mysql) или поменять в yii2advanced кодировку на utf8_general_ci
-7. docker-compose exec app php yii migrate
+7. docker-compose exec app frontend yii migrate
 8. В файле common/config/params-local.php
 ```php
     'sites'  => [
