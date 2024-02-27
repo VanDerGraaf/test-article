@@ -20,7 +20,7 @@ class FileService
 	/**
 	 * Папка в которой будет хранится файлы
 	 */
-	const BASE_DIR = '/web/';
+	const BASE_DIR = '/web/upload';
 
 	/**
 	 * Кол-во символов в подпапке
@@ -117,7 +117,7 @@ class FileService
 		$file = implode('/', [static::getUploadDir(), $model->dir, $model->name]);
 
 		if (true === file_exists($file)) {
-			$result = implode('/', [Yii::$app->params['sites']['storage'], $model->dir, $model->name]);
+			$result = implode('/', [Yii::$app->params['sites']['api'], 'upload', $model->dir, $model->name]);
 		}
 
 		return $result;
